@@ -5,4 +5,6 @@ module com.team54.airportdispatchtycoonteam54 {
 
     opens com.team54.airportdispatchtycoonteam54 to javafx.fxml;
     exports com.team54.airportdispatchtycoonteam54;
+    exports com.team54.airportdispatchtycoonteam54.controllers;
+    opens com.team54.airportdispatchtycoonteam54.controllers to javafx.fxml;
 }
