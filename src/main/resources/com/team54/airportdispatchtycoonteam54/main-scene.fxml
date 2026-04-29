@@ -16,12 +16,17 @@
          <children>
             <VBox alignment="CENTER" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ListView>
+                  <Label text="Holding Pattern">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="flightList">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </ListView>
-                  <Button mnemonicParsing="false" text="Clear Next Flight">
+                  <Button fx:id="clearNextFlightButton" mnemonicParsing="false" text="Clear Next Flight">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -35,27 +40,27 @@
                <children>
                   <VBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label alignment="TOP_CENTER" text="Current Resources">
+                        <Label alignment="TOP_CENTER" text="Terminal Depot">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_CENTER" layoutX="148.0" layoutY="10.0" text="Jet Fuel: 9999 L">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="TOP_CENTER" layoutX="217.0" layoutY="70.0" text="Meals: 9999">
+                        <Label fx:id="jetFuelLabel" alignment="TOP_CENTER" layoutX="148.0" layoutY="10.0" text="Jet Fuel: 9999 L">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_CENTER" layoutX="217.0" layoutY="45.0" text="Luggage Carts: 9999">
+                        <Label fx:id="mealsLabel" alignment="TOP_CENTER" layoutX="217.0" layoutY="70.0" text="Meals: 9999">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Label alignment="TOP_CENTER" layoutX="217.0" layoutY="95.0" text="Budget: $99999">
+                        <Label fx:id="luggageCartsLabel" alignment="TOP_CENTER" layoutX="217.0" layoutY="45.0" text="Luggage Carts: 9999">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="budgetLabel" alignment="TOP_CENTER" layoutX="217.0" layoutY="95.0" text="Budget: $99999">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -64,9 +69,9 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label alignment="TOP_CENTER" text="Acquiring Resources">
+                        <Label alignment="TOP_CENTER" text="Supply Chain">
                            <font>
-                              <Font size="24.0" />
+                              <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
                         <HBox alignment="CENTER">
@@ -76,13 +81,13 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox prefWidth="160.0" promptText="Select Resource..." />
+                              <ComboBox fx:id="availableResourcesDropdown" prefWidth="160.0" promptText="Select Resource..." />
                            </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                         </HBox>
-                        <Button mnemonicParsing="false" text="Purchase/Restock">
+                        <Button fx:id="purchaseButton" mnemonicParsing="false" text="Purchase/Restock">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -102,10 +107,10 @@
                <children>
                   <Label text="Dispatch Radio">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <TextArea editable="false" minHeight="200.0" text="Test test">
+                  <TextArea fx:id="systemLog" editable="false" minHeight="200.0" text="Test test">
                      <font>
                         <Font size="18.0" />
                      </font>
