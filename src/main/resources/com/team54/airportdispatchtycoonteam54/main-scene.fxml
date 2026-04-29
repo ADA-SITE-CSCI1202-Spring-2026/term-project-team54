@@ -31,7 +31,7 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <VBox layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+            <VBox layoutX="10.0" layoutY="10.0" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
                   <VBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
@@ -62,7 +62,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" VBox.vgrow="ALWAYS">
+                  <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label alignment="TOP_CENTER" text="Acquiring Resources">
                            <font>
@@ -82,6 +82,11 @@
                               <Insets />
                            </VBox.margin>
                         </HBox>
+                        <Button mnemonicParsing="false" text="Purchase/Restock">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </VBox>
                </children>
