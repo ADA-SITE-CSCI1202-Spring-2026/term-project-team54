@@ -9,11 +9,13 @@ public class FlightGenerator {
 
     private static final Random random = new Random();
 
-    static Aircraft generateRandom(){
+    public static Aircraft generateRandom(){
         int type = random.nextInt(3);
         
-        Aircraft generatedAircraft;
+        Aircraft generatedAircraft = null;
 
+
+            // TEMP
         float neededFuel = random.nextFloat(200, 1000);
         int neededMeals = random.nextInt(20, 100);
 
@@ -33,7 +35,7 @@ public class FlightGenerator {
                     neededMeals
                 );
                 break;
-            default:
+            case 0:
                 generatedAircraft = new CommercialJet(
                     Queue.getNextID(),
                     neededFuel,
