@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="540.0" prefWidth="960.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26" fx:controller="com.team54.airportdispatchtycoonteam54.controllers.MainController">
+<VBox alignment="CENTER" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.team54.airportdispatchtycoonteam54.controllers.MainController">
    <children>
       <HBox alignment="CENTER">
          <children>
@@ -33,11 +33,31 @@
             </VBox>
             <VBox layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
                <children>
-                  <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                  <VBox alignment="TOP_CENTER" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label alignment="TOP_CENTER" text="Current Resources">
                            <font>
                               <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" layoutX="148.0" layoutY="10.0" text="Jet Fuel: 9999 L">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" layoutX="217.0" layoutY="70.0" text="Meals: 9999">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" layoutX="217.0" layoutY="45.0" text="Luggage Carts: 9999">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="TOP_CENTER" layoutX="217.0" layoutY="95.0" text="Budget: $99999">
+                           <font>
+                              <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
