@@ -6,6 +6,7 @@ module com.team54.airportdispatchtycoonteam54 {
     // remove stage warning
 
     requires transitive javafx.graphics;
+    requires javafx.base;
 
     opens com.team54.airportdispatchtycoonteam54 to javafx.fxml;
     exports com.team54.airportdispatchtycoonteam54;

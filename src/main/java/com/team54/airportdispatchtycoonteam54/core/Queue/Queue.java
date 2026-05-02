@@ -26,4 +26,8 @@ public class Queue {
         return aircraftQueue;
     }
 
+    public static void addAircraft(Aircraft aircraft){
+        aircraftQueue.add(aircraft);
+    }
+
 }
