@@ -7,7 +7,7 @@ import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequest;
 import com.team54.airportdispatchtycoonteam54.core.Queue.Queue;
 
 
-public class FlightTimelineManager implements TickableInterface {
+public class FlightTimelineManager implements ITickable {
     
 
     
@@ -22,6 +22,7 @@ public class FlightTimelineManager implements TickableInterface {
 
 
     FlightTimelineManager(double chancePerTickToSpawn) {
+        subscribe();
         random = new Random();
         setSpawnChance(chancePerTickToSpawn);
         
