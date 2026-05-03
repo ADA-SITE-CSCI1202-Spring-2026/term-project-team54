@@ -2,15 +2,19 @@ package com.team54.airportdispatchtycoonteam54.core.Planes;
 
 public abstract class Aircraft {
     Integer flightNumber;
-    Float requiredFuel;
     Float turnAroundTime;
-    Integer requiredMeals;
+    
+    // Float requiredFuel;
+    // Integer requiredMeals;
+    // Integer requiredLuggage;
 
-    Aircraft(Integer flightNumber, Float requiredFuel, Integer meals){
+    AircraftNeeds needs;
+
+    Aircraft(Integer flightNumber, AircraftNeeds needs){
         // this.turnAroundTime = turnAroundTime;
-        this.requiredFuel = requiredFuel;
         this.flightNumber = flightNumber;
-        this.requiredMeals = meals;
+
+        this.needs = needs;
     }   
 
 
@@ -20,7 +24,7 @@ public abstract class Aircraft {
     }
 
     public Float getRequiredFuel() {
-        return requiredFuel;
+        return needs.requiredFuel;
     }
 
     public Float getTurnAroundTime() {
@@ -28,17 +32,16 @@ public abstract class Aircraft {
     }
 
     public Integer getMeals() {
-        return requiredMeals;
+        return needs.requiredMeals;
     }
 
     public void supplyMeals(Integer meals) {
-        this.requiredMeals += meals;
+        needs.requiredMeals += meals;
     }
 
     public void supplyFuel(Float fuel) {
-        this.requiredFuel += fuel;
+        needs.requiredFuel += fuel;
     }
-    
-    
+
     
 }
