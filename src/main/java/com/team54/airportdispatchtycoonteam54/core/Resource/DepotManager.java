@@ -1,3 +1,6 @@
+package com.team54.airportdispatchtycoonteam54.core.Resource;
+
+
 import java.util.HashMap;
 
 public class DepotManager {
@@ -35,28 +38,5 @@ public class DepotManager {
             return true;
         }
         return false;
-    }
-}
-
-package resource;
-
-import java.util.HashMap;
-
-public class DepotManager {
-
-    private HashMap<SupplyItem, Integer> supplies;
-    private double budget;
-
-    public DepotManager(double initialBudget) {
-        supplies = new HashMap<>();
-        budget = initialBudget;
-    }
-
-    public boolean clearFlight(SupplyItem item, int needed) {
-        if (supplies.getOrDefault(item, 0) >= needed) {
-            supplies.put(item, supplies.get(item) - needed);
-            return true;
-        }
-        return false; 
     }
 }
