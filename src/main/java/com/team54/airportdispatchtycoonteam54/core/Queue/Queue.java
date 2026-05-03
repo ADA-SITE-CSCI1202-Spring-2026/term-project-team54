@@ -11,7 +11,7 @@ public class Queue {
     static LinkedList<Aircraft> aircraftQueue = new LinkedList<>();
 
 
-    static int getNextID(){
+    public static int getNextID(){
         currentID++;
         return currentID;
     }

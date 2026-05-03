@@ -2,7 +2,6 @@ package com.team54.airportdispatchtycoonteam54.core.Queue;
 
 import java.util.Random;
 import com.team54.airportdispatchtycoonteam54.core.Planes.*;
-import com.team54.airportdispatchtycoonteam54.core.Planes.AircraftNeeds;
 
 
 
@@ -35,7 +34,7 @@ public class FlightRequest {
             
             
             
-            float neededFuel = random.nextFloat(200, 1000);
+            int neededFuel = random.nextInt(200, 1000);
             int neededMeals = random.nextInt(10, 100);
             int neededLuggage = random.nextInt(10,200);
 

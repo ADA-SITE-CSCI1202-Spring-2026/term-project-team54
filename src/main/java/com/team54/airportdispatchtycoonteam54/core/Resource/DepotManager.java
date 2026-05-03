@@ -22,11 +22,18 @@ public class DepotManager {
         return supplies.getOrDefault(item, 0) >= amount;
     }
 
-
-    public void useSupply(SupplyItem item, int amount) {
+    public Integer useSupply(SupplyItem item, int amount) {
+        Integer usedSupplyAmount;
+        
         if (hasEnough(item, amount)) {
+            usedSupplyAmount = amount;
             supplies.put(item, supplies.get(item) - amount);
+            return usedSupplyAmount;
         }
+        usedSupplyAmount = supplies.get(item);
+        supplies.put(item, 0);
+        return usedSupplyAmount;
+
     }
 
     

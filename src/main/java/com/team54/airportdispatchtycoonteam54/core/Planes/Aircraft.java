@@ -1,5 +1,7 @@
 package com.team54.airportdispatchtycoonteam54.core.Planes;
 
+import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
+
 public abstract class Aircraft {
     Integer flightNumber;
     Float turnAroundTime;
@@ -23,25 +25,37 @@ public abstract class Aircraft {
         return flightNumber;
     }
 
-    public Float getRequiredFuel() {
-        return needs.requiredFuel;
+
+    public Integer getSupplyAmountNeeded(SupplyItem item){
+        return needs.requiredSupplies.get(item);
     }
+
+    
+
+
+
+    // public Integer getRequiredFuel() {
+    //     return needs.requiredFuel;
+    // }
 
     public Float getTurnAroundTime() {
         return turnAroundTime;
     }
 
-    public Integer getMeals() {
-        return needs.requiredMeals;
-    }
+    // public Integer getMeals() {
+    //     return needs.requiredMeals;
+    // }
 
-    public void supplyMeals(Integer meals) {
-        needs.requiredMeals += meals;
-    }
+    // public void supplyMeals(Integer meals) {
+    //     needs.requiredMeals += meals;
+    // }
 
-    public void supplyFuel(Float fuel) {
-        needs.requiredFuel += fuel;
-    }
+    // public void supplyFuel(Integer fuel) {
+    //     needs.requiredFuel += fuel;
+    // }
+
+
+    
 
     
 }

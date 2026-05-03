@@ -1,17 +1,21 @@
 package com.team54.airportdispatchtycoonteam54.core.Planes;
 
-    
+import java.util.HashMap;
+
+import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
+
 public class AircraftNeeds{
 
 
-        public AircraftNeeds(Float fuel, Integer meals, Integer luggage){
-            requiredFuel = fuel;
-            requiredMeals = meals;
-            requiredLuggage = luggage;
+    HashMap<SupplyItem,Integer> requiredSupplies;
 
-        }
+    public AircraftNeeds(Integer fuel, Integer meals, Integer luggage){
+        
+        requiredSupplies = new HashMap<>();
+        requiredSupplies.put(SupplyItem.FUEL, fuel);
+        requiredSupplies.put(SupplyItem.MEAL, meals);
+        requiredSupplies.put(SupplyItem.LUGGAGE, luggage);
+        
 
-        Float requiredFuel;
-        Integer requiredMeals;
-        Integer requiredLuggage;
     }
+}

@@ -1,13 +1,9 @@
-package com.team54.airportdispatchtycoonteam54.core.Queue;
+package com.team54.airportdispatchtycoonteam54.core.Planes;
 
+import com.team54.airportdispatchtycoonteam54.core.Queue.Queue;
 
+// import com.team54.airportdispatchtycoonteam54.core.Queue.Queue;
 
-import com.team54.airportdispatchtycoonteam54.core.Planes.Aircraft;
-import com.team54.airportdispatchtycoonteam54.core.Planes.CommercialJet;
-import com.team54.airportdispatchtycoonteam54.core.Planes.AircraftType;
-import com.team54.airportdispatchtycoonteam54.core.Planes.CargoFreighter;
-import com.team54.airportdispatchtycoonteam54.core.Planes.PrivateCharter;
-import com.team54.airportdispatchtycoonteam54.core.Planes.AircraftNeeds;
 
 
 
@@ -16,7 +12,7 @@ import com.team54.airportdispatchtycoonteam54.core.Planes.AircraftNeeds;
 /**
  * Factory class for creating different Aircraft types.
 */
-public class AicraftFactory {
+public class AircraftFactory {
     /**
      * Returns an Aircraft class depending on the AIrcraftType.
     */
