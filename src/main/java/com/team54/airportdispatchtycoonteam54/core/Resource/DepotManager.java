@@ -41,15 +41,18 @@ public class DepotManager {
     public boolean hasEnough(SupplyItem item, int amount) {
         return supplies.getOrDefault(item, 0) >= amount;
     }
-    
-    public boolean purchase(SupplyItem item, int amount, double price) {
-        double total = amount * price;
+
+    /**
+     * Returns the message to be displayed in the Dispatch Radio after purchase attempt
+     */
+    public String purchase(SupplyItem item, int amount) {
+        double total = amount * item.getPrice();
         if (budget >= total) {
             budget -= total;
             addSupply(item, amount);
-            return true;
+            return "Successfully purchased " + amount + " of " + item + ".\n";
         }
-        return false;
+        return "ERROR: Not enough money to purchase " + item + "!\n";
     }
 
     private void addSupply(SupplyItem item, int amount) {
