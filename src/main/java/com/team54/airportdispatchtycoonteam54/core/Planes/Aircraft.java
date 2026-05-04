@@ -7,13 +7,11 @@ public abstract class Aircraft {
     //TODO: make it work across sessions
     private static Integer id = 0;
 
-    private Integer flightNumber;
-    private Float turnAroundTime;
+    private final Integer flightNumber;
 
-    private AircraftNeeds needs;
+    private final AircraftNeeds needs;
 
     public Aircraft(AircraftNeeds needs){
-        // this.turnAroundTime = turnAroundTime;
         id++;
         this.flightNumber = id;
 
@@ -32,10 +30,6 @@ public abstract class Aircraft {
 
     static int generateRandomSupplyItemNeed(int min, int max){
         return min + (int)(Math.random() * ((max - min) + 1));
-    }
-
-    public Float getTurnAroundTime() {
-        return turnAroundTime;
     }
 
     

@@ -9,7 +9,7 @@ import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
  */
 public class AircraftNeeds{
 
-    private HashMap<SupplyItem,Integer> requiredSupplies;
+    private final HashMap<SupplyItem,Integer> requiredSupplies;
 
     public AircraftNeeds(Integer fuel, Integer meals, Integer luggage){
         requiredSupplies = new HashMap<>();
