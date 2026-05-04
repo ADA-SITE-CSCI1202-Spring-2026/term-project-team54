@@ -10,4 +10,9 @@ public class PrivateCharter extends Aircraft {
         ));
     }
 
+    @Override
+    public String toString() {
+        return "Private Charter #" + getFlightNumber();
+    }
+
 }

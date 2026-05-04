@@ -11,4 +11,8 @@ public class CommercialJet extends Aircraft {
         ));
     }
 
+    @Override
+    public String toString() {
+        return "Commercial Jet #" + getFlightNumber();
+    }
 }

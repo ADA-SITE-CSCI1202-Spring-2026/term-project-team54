@@ -9,6 +9,11 @@ public class CargoFreighter extends Aircraft {
         super(generateNeeds());
     }
 
+    @Override
+    public String toString() {
+        return "Cargo Freighter #" + getFlightNumber();
+    }
+
     private static AircraftNeeds generateNeeds() {
         final int MIN_LUGGAGE = 10;
         final int MAX_LUGGAGE = 20;
