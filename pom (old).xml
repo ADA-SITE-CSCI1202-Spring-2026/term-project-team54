@@ -11,9 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <junit.version>5.12.1</junit.version>
+        <maven.compiler.source>21</maven.compiler.source> <maven.compiler.target>21</maven.compiler.target> <junit.version>5.12.1</junit.version>
     </properties>
 
     <dependencies>
@@ -27,6 +25,7 @@
             <artifactId>javafx-fxml</artifactId>
             <version>21.0.6</version>
         </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -43,7 +42,6 @@
 
     <build>
         <plugins>
-            <!-- Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -53,33 +51,28 @@
                     <target>21</target>
                 </configuration>
             </plugin>
-
-            <!-- JavaFX Plugin -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
-                <configuration>
-                    <mainClass>com.team54.airportdispatchtycoonteam54.Launcher</mainClass>
-                </configuration>
-            </plugin>
-
-            <!-- Shade Plugin to create the Fat JAR -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.0</version>
                 <executions>
                     <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
+                        <!-- Default configuration for running with: mvn clean javafx:run -->
+                        <id>default-cli</id>
                         <configuration>
+                            <!-- <mainClass implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                com.team54.airportdispatchtycoonteam54/com.team54.airportdispatchtycoonteam54.Launcher
+                            </mainClass>
+                            <launcher>app</launcher>
+                            <jlinkZipName>app</jlinkZipName>
+                            <jlinkImageName>app</jlinkImageName>
+                            <noManPages>true</noManPages>
+                            <stripDebug>true</stripDebug>
+                            <noHeaderFiles>true</noHeaderFiles> -->
                             <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.team54.airportdispatchtycoonteam54.Launcher</mainClass>
-                                </transformer>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <mainClass>com.team54.airportdispatchtycoonteam54.Launcher</mainClass>
+                            </transformer>
                             </transformers>
                             <filters>
                                 <filter>
