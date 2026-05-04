@@ -31,6 +31,12 @@ public class DepotManager {
         return INSTANCE;
     }
 
+    public void loadSaveState(Integer fuel, Integer meals, Integer luggage, Integer budget){
+        supplies.put(SupplyItem.FUEL, fuel);
+        supplies.put(SupplyItem.MEAL, meals);
+        supplies.put(SupplyItem.LUGGAGE, luggage);
+        this.budget = budget;
+    }
     public Integer getBudget(){
         return budget;
     }

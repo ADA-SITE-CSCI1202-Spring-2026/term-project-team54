@@ -13,7 +13,7 @@ public class RandomFlightRequestGenerator implements ITickable {
     private static final Random RNG = new Random();
 
     private static RandomFlightRequestGenerator INSTANCE;
-    private final FlightRequestQueue flightRequestQueue;
+    private FlightRequestQueue flightRequestQueue;
 
     private RandomFlightRequestGenerator(FlightRequestQueue flightRequestQueue) {
         this.flightRequestQueue = flightRequestQueue;
@@ -35,10 +35,17 @@ public class RandomFlightRequestGenerator implements ITickable {
         return INSTANCE;
     }
 
+    /**
+     * Used for loading save data
+     */
+    public void setFlightRequestQueue(FlightRequestQueue flightRequestQueue){
+        this.flightRequestQueue = flightRequestQueue;
+    }
+
     @Override
     public void onTick(){
         AircraftType[] types = AircraftType.values();
         AircraftType randomType = types[RNG.nextInt(types.length)];
-        flightRequestQueue.add(new FlightRequest(randomType));
+        flightRequestQueue.offer(new FlightRequest(randomType));
     }
 }

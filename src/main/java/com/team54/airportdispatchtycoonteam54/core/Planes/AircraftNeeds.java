@@ -1,5 +1,6 @@
 package com.team54.airportdispatchtycoonteam54.core.Planes;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
@@ -7,7 +8,7 @@ import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
 /**
  * Stores the required resources for a particular Aircraft
  */
-public class AircraftNeeds{
+public class AircraftNeeds implements Serializable {
 
     private final HashMap<SupplyItem,Integer> requiredSupplies;
 

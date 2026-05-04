@@ -1,28 +1,23 @@
 package com.team54.airportdispatchtycoonteam54.core.SaveLoad;
 
 import java.io.Serializable;
-// import java.util.ArrayList;
-
-// import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequest;
 import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequestQueue;
 
-// import javafx.collections.ObservableList;
-
 public class SaveData implements Serializable {
-    private Integer currentFuel;
-    private Integer currentMeal;
-    private Integer currentLuggage;
-    private Double currentMoney;
-    private Integer currentAircraftID;
-    private FlightRequestQueue currentQueuedFlightRequests;
+    private final Integer currentFuel;
+    private final Integer currentMeal;
+    private final Integer currentLuggage;
+    private final Integer currentBudget;
+    private final Integer currentAircraftID;
+    private final FlightRequestQueue currentQueuedFlightRequests;
 
 
-    public SaveData(Integer currentFuel, Integer currentMeal, Integer currentLuggage, Double currentMoney,
+    public SaveData(Integer currentFuel, Integer currentMeal, Integer currentLuggage, Integer currentBudget,
             Integer currentAircraftID, FlightRequestQueue currentQueuedFlightRequests) {
         this.currentFuel = currentFuel;
         this.currentMeal = currentMeal;
         this.currentLuggage = currentLuggage;
-        this.currentMoney = currentMoney;
+        this.currentBudget = currentBudget;
         this.currentAircraftID = currentAircraftID;
         this.currentQueuedFlightRequests = currentQueuedFlightRequests;
     }
@@ -43,8 +38,8 @@ public class SaveData implements Serializable {
     }
 
 
-    public Double getCurrentMoney() {
-        return currentMoney;
+    public Integer getCurrentBudget() {
+        return currentBudget;
     }
 
 
@@ -56,8 +51,5 @@ public class SaveData implements Serializable {
     public FlightRequestQueue getCurrentQueuedFlightRequests() {
         return currentQueuedFlightRequests;
     }
-
-
-        
     
 }

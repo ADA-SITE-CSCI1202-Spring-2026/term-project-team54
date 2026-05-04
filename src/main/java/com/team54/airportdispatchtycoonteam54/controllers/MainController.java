@@ -2,16 +2,22 @@ package com.team54.airportdispatchtycoonteam54.controllers;
 
 import com.team54.airportdispatchtycoonteam54.core.Events.RandomFlightRequestGenerator;
 import com.team54.airportdispatchtycoonteam54.core.Events.TickManager;
+import com.team54.airportdispatchtycoonteam54.core.Planes.Aircraft;
 import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequest;
 import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequestQueue;
 import com.team54.airportdispatchtycoonteam54.core.Resource.DepotManager;
 import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
+import com.team54.airportdispatchtycoonteam54.core.SaveLoad.SaveData;
+import com.team54.airportdispatchtycoonteam54.core.SaveLoad.SaveDataManager;
 import com.team54.airportdispatchtycoonteam54.core.Services.CrewManager;
 import com.team54.airportdispatchtycoonteam54.core.Services.ServiceResult;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class MainController {
     @FXML
@@ -44,7 +50,7 @@ public class MainController {
     @FXML
     private ComboBox<SupplyItem> availableResourcesDropdown;
 
-    private final FlightRequestQueue flightRequestQueue = new FlightRequestQueue();
+    private FlightRequestQueue flightRequestQueue = new FlightRequestQueue();
 
     @FXML
     public void initialize(){
@@ -61,13 +67,92 @@ public class MainController {
         // initialize all singletons:
         // done this way so I can control the order in which they're initialized
         // because some singletons depend on others being initialized first
-        TickManager.getInstance();
-        RandomFlightRequestGenerator.initialize(flightRequestQueue);
         DepotManager.getInstance();
         CrewManager.getInstance();
 
+        loadSavedState();
+
+        TickManager.getInstance();
+        RandomFlightRequestGenerator.initialize(flightRequestQueue);
+
         initializeGUI();
         updateGUI();
+    }
+
+    public void saveCurrentState(){
+        System.out.println("Saving before quit...");
+        SaveData saveData = new SaveData(
+                DepotManager.getInstance().getSupplyItemAmount(SupplyItem.FUEL),
+                DepotManager.getInstance().getSupplyItemAmount(SupplyItem.MEAL),
+                DepotManager.getInstance().getSupplyItemAmount(SupplyItem.LUGGAGE),
+                DepotManager.getInstance().getBudget(),
+                Aircraft.getID(),
+                flightRequestQueue
+                );
+        try {
+            SaveDataManager.save(saveData);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Successfully saved data!");
+    }
+
+    private void loadSavedState(){
+        System.out.println("Attempting to load saved data..");
+        SaveData saveData;
+        try {
+           saveData = SaveDataManager.load();
+        } catch (FileNotFoundException e){
+            System.out.println("No save data exists. Skipping loading save data.");
+            return;
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        if(saveData == null){
+            System.out.println("Saved data is null.");
+            return;
+        }
+        applySaveData(saveData);
+    }
+
+    /**
+     * Resets all data to make it look as if
+     * you just launched the game for the first time.
+     */
+    private void resetToStartingState(){
+        System.out.println("Attempting to start over..");
+        SaveData saveData;
+        try {
+            saveData = SaveDataManager.loadInitialState();
+        } catch (FileNotFoundException e){
+            System.out.println("No initial_state.dat exists.");
+            throw new RuntimeException(e);
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        if(saveData == null){
+            System.out.println("Initial state data is null.");
+            return;
+        }
+
+        applySaveData(saveData);
+        RandomFlightRequestGenerator.getInstance().setFlightRequestQueue(flightRequestQueue);
+
+        initializeGUI();
+        updateGUI();
+        System.out.println("Successfully started over!");
+    }
+
+    private void applySaveData(SaveData saveData){
+        DepotManager.getInstance().loadSaveState(
+                saveData.getCurrentFuel(),
+                saveData.getCurrentMeal(),
+                saveData.getCurrentLuggage(),
+                saveData.getCurrentBudget()
+        );
+        Aircraft.setID(saveData.getCurrentAircraftID());
+        flightRequestQueue = saveData.getCurrentQueuedFlightRequests();
+        System.out.println("Successfully loaded and applied saved data!");
     }
 
     private void handleClearNextFlightButtonPressed(ActionEvent event){
@@ -87,18 +172,6 @@ public class MainController {
         String message =
                 DepotManager.getInstance().purchase(availableResourcesDropdown.getValue(), 10);
         systemLog.appendText(message);
-        updateGUI();
-    }
-
-    /**
-     * Resets all data to make it look as if
-     * you just launched the game for the first time.
-     */
-    private void resetToStartingState(){
-        System.out.println("Reset pressed");
-        // TODO: Load from some existing save file.
-
-        initializeGUI();
         updateGUI();
     }
 

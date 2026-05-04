@@ -2,7 +2,9 @@ package com.team54.airportdispatchtycoonteam54.core.Queue;
 
 import com.team54.airportdispatchtycoonteam54.core.Planes.*;
 
-public class FlightRequest {
+import java.io.Serializable;
+
+public class FlightRequest implements Serializable {
     private final Aircraft aircraft;
 
     /**

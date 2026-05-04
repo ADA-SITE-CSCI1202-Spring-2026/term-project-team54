@@ -2,9 +2,13 @@ package com.team54.airportdispatchtycoonteam54.core.Planes;
 
 import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
 
-public abstract class Aircraft {
+import java.io.Serializable;
 
-    //TODO: make it work across sessions
+public abstract class Aircraft implements Serializable {
+
+    /**
+     * Used to set a flightNumber for each Aircraft.
+     */
     private static Integer id = 0;
 
     private final Integer flightNumber;
@@ -15,9 +19,19 @@ public abstract class Aircraft {
         id++;
         this.flightNumber = id;
 
-        //TODO: SET THIS RANDOMLY HERE
         this.needs = needs;
-    }   
+    }
+
+    public static Integer getID(){
+        return id;
+    }
+
+    /**
+     * Used when loading an existing save file.
+     */
+    public static void setID(Integer value){
+        id = value;
+    }
 
     public Integer getFlightNumber() {
         return flightNumber;
