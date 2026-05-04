@@ -1,11 +1,16 @@
 package com.team54.airportdispatchtycoonteam54.core.Events;
 
 
+import com.team54.airportdispatchtycoonteam54.core.Planes.AircraftType;
 import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequest;
 import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequestQueue;
 
+import java.util.Random;
+
 
 public class RandomFlightRequestGenerator implements ITickable {
+
+    private static final Random RNG = new Random();
 
     private static RandomFlightRequestGenerator INSTANCE;
     private final FlightRequestQueue flightRequestQueue;
@@ -32,6 +37,8 @@ public class RandomFlightRequestGenerator implements ITickable {
 
     @Override
     public void onTick(){
-        flightRequestQueue.add(new FlightRequest());
+        AircraftType[] types = AircraftType.values();
+        AircraftType randomType = types[RNG.nextInt(types.length)];
+        flightRequestQueue.add(new FlightRequest(randomType));
     }
 }

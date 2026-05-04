@@ -17,7 +17,7 @@ public class CateringVan implements IGroundService {
 
     @Override
     public void serviceFlight(FlightRequest flightRequest) {
-        boolean result = DepotManager.getInstance().
+        DepotManager.getInstance().
                 useSupply(
                         requiredSupplyItem,
                         flightRequest.getAircraft().getSupplyAmountNeeded(requiredSupplyItem)

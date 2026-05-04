@@ -30,6 +30,9 @@ public abstract class Aircraft {
         return needs.getRequiredSupplyAmount(item);
     }
 
+    static int generateRandomSupplyItemNeed(int min, int max){
+        return min + (int)(Math.random() * ((max - min) + 1));
+    }
 
     public Float getTurnAroundTime() {
         return turnAroundTime;

@@ -28,7 +28,7 @@ public class DepotManager {
      * only if the Depo has enough of that supply item.
      * @param item The supply item you want to use
      * @param amount The amount of the supply item you want to use.
-     * @return True if the DepotManager has enough of the given supply; false if not.
+     * @return True if the DepotManager has enough of the given supply item; false if not.
      */
     public boolean useSupply(SupplyItem item, int amount) {
         if (hasEnough(item, amount)) {

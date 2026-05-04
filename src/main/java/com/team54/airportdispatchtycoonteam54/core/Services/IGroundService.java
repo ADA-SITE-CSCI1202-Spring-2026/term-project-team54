@@ -9,7 +9,8 @@ public interface IGroundService {
     void serviceFlight(FlightRequest flightRequest);
 
     /**
-     * Returns true if the depo has enough of the given resource.
+     * Returns true if the depo has enough of the given amount
+     * of the required supply item.
      */
     Boolean canServiceFlight(Integer amount);
 

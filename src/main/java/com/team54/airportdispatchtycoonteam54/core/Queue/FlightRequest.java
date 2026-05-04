@@ -6,8 +6,8 @@ import com.team54.airportdispatchtycoonteam54.core.Planes.*;
 public class FlightRequest {
     Aircraft aircraft;
 
-    public FlightRequest(){
-        aircraft = AircraftFactory.create(type,needs);
+    public FlightRequest(AircraftType type){
+        aircraft = AircraftFactory.create(type);
     }
 
     public Aircraft getAircraft() {
