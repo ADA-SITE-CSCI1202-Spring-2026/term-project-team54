@@ -5,21 +5,22 @@ import java.util.HashMap;
 
 public class DepotManager {
 
-    private HashMap<SupplyItem, Integer> supplies;
+    private static DepotManager INSTANCE;
+    private static final double INITIAL_BUDGET = 100;
+
+    private final HashMap<SupplyItem, Integer> supplies;
     private double budget;
 
-    public DepotManager(double initialBudget) {
+    private DepotManager() {
         supplies = new HashMap<>();
-        budget = initialBudget;
+        budget = INITIAL_BUDGET; //TODO: read from config
     }
 
-    public void addSupply(SupplyItem item, int amount) {
-        supplies.put(item, supplies.getOrDefault(item, 0) + amount);
-    }
-
-
-    public boolean hasEnough(SupplyItem item, int amount) {
-        return supplies.getOrDefault(item, 0) >= amount;
+    public static DepotManager getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new DepotManager();
+        }
+        return INSTANCE;
     }
 
     /**
@@ -31,10 +32,14 @@ public class DepotManager {
      */
     public boolean useSupply(SupplyItem item, int amount) {
         if (hasEnough(item, amount)) {
-            supplies.put(item, supplies.get(item) - amount);
+            addSupply(item, -1 * amount);
             return true;
         }
         return false;
+    }
+
+    public boolean hasEnough(SupplyItem item, int amount) {
+        return supplies.getOrDefault(item, 0) >= amount;
     }
     
     public boolean purchase(SupplyItem item, int amount, double price) {
@@ -45,5 +50,9 @@ public class DepotManager {
             return true;
         }
         return false;
+    }
+
+    private void addSupply(SupplyItem item, int amount) {
+        supplies.put(item, supplies.getOrDefault(item, 0) + amount);
     }
 }

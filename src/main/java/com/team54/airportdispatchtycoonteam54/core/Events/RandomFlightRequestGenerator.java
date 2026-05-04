@@ -12,18 +12,17 @@ public class RandomFlightRequestGenerator implements ITickable {
 
     private RandomFlightRequestGenerator(FlightRequestQueue flightRequestQueue) {
         this.flightRequestQueue = flightRequestQueue;
-        INSTANCE = this;
     }
 
     public static RandomFlightRequestGenerator getInstance() throws IllegalStateException{
         if(INSTANCE == null){
             throw new IllegalStateException("Cannot get instance of RandomFlightRequestGenerator before it is created. " +
-                    "Please use createInstance(FlightRequestQueue) to create an instance first.");
+                    "Please use initialize(FlightRequestQueue) to create an instance first.");
         }
         return INSTANCE;
     }
 
-    public static RandomFlightRequestGenerator  createInstance(FlightRequestQueue flightRequestQueue) {
+    public static RandomFlightRequestGenerator initialize(FlightRequestQueue flightRequestQueue) {
         if (INSTANCE == null) {
             INSTANCE = new RandomFlightRequestGenerator(flightRequestQueue);
             INSTANCE.subscribe();
@@ -33,6 +32,6 @@ public class RandomFlightRequestGenerator implements ITickable {
 
     @Override
     public void onTick(){
-        flightRequestQueue.addFlightRequest(new FlightRequest());
+        flightRequestQueue.add(new FlightRequest());
     }
 }

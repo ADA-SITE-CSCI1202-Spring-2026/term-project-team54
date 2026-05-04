@@ -1,41 +1,47 @@
 package com.team54.airportdispatchtycoonteam54.core.Queue;
 
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
+import java.util.AbstractQueue;
+import java.util.Iterator;
 
-import com.team54.airportdispatchtycoonteam54.core.Planes.Aircraft;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class FlightRequestQueue {
+public class FlightRequestQueue extends AbstractQueue<FlightRequest> {
 
     private final ObservableList<FlightRequest> flightRequestQueue = FXCollections.observableArrayList();
 
     /**
-     * Returns the next Aircraft in the queue without removing it. If the queue is empty, returns null.
+     * For use in UI only!!!
+     * Returns a read only version of the FlightRequest queue.
      */
-    public FlightRequest getNextFlightRequest(){
-        return flightRequestQueue.isEmpty() ? null : flightRequestQueue.getFirst();
+    public ObservableList<FlightRequest> getInternalList() {
+        return FXCollections.unmodifiableObservableList(flightRequestQueue);
     }
 
-    /**
-     * Removes the next Aircraft from the queue and returns it. If the queue is empty, returns null.
-     */
-    public FlightRequest clearNextFlightRequest(){
-        if (flightRequestQueue.isEmpty()) {
-            return null;
-        }
+    @Override
+    public boolean offer(FlightRequest e) {
+        if (e == null) return false;
+        return flightRequestQueue.add(e);
+    }
+
+    @Override
+    public FlightRequest poll() {
+        if (flightRequestQueue.isEmpty()) return null;
         return flightRequestQueue.removeFirst();
     }
 
-    public void addFlightRequest(FlightRequest flightRequest) {
-        flightRequestQueue.add(flightRequest);
+    @Override
+    public FlightRequest peek() {
+        return flightRequestQueue.isEmpty() ? null : flightRequestQueue.getFirst();
     }
 
-    /**
-     * For use in UI only!!!
-     */
-    public ObservableList<FlightRequest> getInternalList() {
-        return flightRequestQueue;
+    @Override
+    public Iterator<FlightRequest> iterator() {
+        return flightRequestQueue.iterator();
+    }
+
+    @Override
+    public int size() {
+        return flightRequestQueue.size();
     }
 }

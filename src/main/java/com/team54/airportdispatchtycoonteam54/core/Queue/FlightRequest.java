@@ -14,4 +14,9 @@ public class FlightRequest {
         return aircraft;
     }
 
+
+    @Override
+    public String toString() {
+        return "IMPLEMENT TO STRING"; // TODO:
+    }
 }

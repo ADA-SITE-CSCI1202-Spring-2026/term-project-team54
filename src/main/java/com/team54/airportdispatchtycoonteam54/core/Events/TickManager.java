@@ -24,10 +24,7 @@ public class TickManager {
     public static TickManager getInstance(){
         if(INSTANCE == null){
             INSTANCE = new TickManager();
-
             INSTANCE.startTicking();
-
-            return INSTANCE;
         }
         return INSTANCE;
     }
@@ -40,10 +37,11 @@ public class TickManager {
         loopingTimeline.play();
     }
 
-    void addITickable(ITickable tickable){
+    boolean addITickable(ITickable tickable){
         if(!tickables.contains(tickable)){
-            tickables.add(tickable);
+            return tickables.add(tickable);
         }
+        return false;
     }
 
     boolean removeITickable(ITickable tickable){

@@ -3,7 +3,7 @@ package com.team54.airportdispatchtycoonteam54.core.Planes;
 /**
  * Factory class for creating different Aircraft types.
 */
-public class AircraftFactory {
+public abstract class AircraftFactory {
     /**
      * Returns an Aircraft class depending on the AIrcraftType.
     */
