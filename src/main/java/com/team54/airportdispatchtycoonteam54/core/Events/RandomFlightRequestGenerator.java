@@ -39,6 +39,6 @@ public class RandomFlightRequestGenerator implements ITickable {
     public void onTick(){
         AircraftType[] types = AircraftType.values();
         AircraftType randomType = types[RNG.nextInt(types.length)];
-        flightRequestQueue.add(new FlightRequest(randomType));
+        flightRequestQueue.add(new FlightRequest());
     }
 }
