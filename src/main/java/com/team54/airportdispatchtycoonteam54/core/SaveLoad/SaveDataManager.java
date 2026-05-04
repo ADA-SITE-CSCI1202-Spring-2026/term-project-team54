@@ -12,9 +12,9 @@ import java.io.ObjectOutputStream;
 public class SaveDataManager {
 
     
-    public static void save(SaveData saveResources) throws IOException{
+    public static void save(SaveData saveData) throws IOException{
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("save.dat"));
-        out.writeObject(saveResources);
+        out.writeObject(saveData);
         out.close();
 
     }
