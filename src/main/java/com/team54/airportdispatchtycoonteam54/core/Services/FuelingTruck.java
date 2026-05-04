@@ -1,12 +1,36 @@
 package com.team54.airportdispatchtycoonteam54.core.Services;
 
+import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequest;
+import com.team54.airportdispatchtycoonteam54.core.Resource.DepotManager;
+import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
 
+public class FuelingTruck implements IGroundService{
 
+    private final SupplyItem requiredSupplyItem = SupplyItem.FUEL;
 
-public class FuelingTruck implements IGroundService {
+    @Override
+    public String toString() {
+        return "Fueling Truck";
+    }
 
-    public void serviceFlight() {
-        // System.out.println("Fuel added to " + plane.getFlightNumber());
+    @Override
+    public void serviceFlight(FlightRequest flightRequest) {
+        DepotManager.getInstance().
+                useSupply(
+                        requiredSupplyItem,
+                        flightRequest.getAircraft().getSupplyAmountNeeded(requiredSupplyItem)
+                );
+
+    }
+
+    @Override
+    public Boolean canServiceFlight(Integer amount) {
+        return DepotManager.getInstance().hasEnough(requiredSupplyItem, amount);
+    }
+
+    @Override
+    public SupplyItem getRequiredSupplyItem() {
+        return requiredSupplyItem;
     }
 }
 
