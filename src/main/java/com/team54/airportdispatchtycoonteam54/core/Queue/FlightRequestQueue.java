@@ -8,6 +8,9 @@ import javafx.collections.ObservableList;
 
 public class FlightRequestQueue extends AbstractQueue<FlightRequest> {
 
+    // the maximum number of flight requests that can be in the queue at a time;
+    private final static int maxSize = 10;
+
     private final ObservableList<FlightRequest> flightRequestQueue = FXCollections.observableArrayList();
 
     /**
@@ -21,6 +24,7 @@ public class FlightRequestQueue extends AbstractQueue<FlightRequest> {
     @Override
     public boolean offer(FlightRequest e) {
         if (e == null) return false;
+        if(flightRequestQueue.size() >= maxSize) return false;
         return flightRequestQueue.add(e);
     }
 
