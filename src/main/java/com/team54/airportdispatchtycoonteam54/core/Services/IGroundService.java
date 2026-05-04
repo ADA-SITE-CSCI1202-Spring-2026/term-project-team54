@@ -4,8 +4,5 @@ import com.team54.airportdispatchtycoonteam54.core.Planes.Aircraft;
 import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
 
 public interface IGroundService {
-
-    
-
-    Boolean serviceFlight(Aircraft plane,SupplyItem item,Integer suppliedAmount);
+    Boolean serviceFlight(Aircraft plane, SupplyItem item, Integer suppliedAmount);
 }

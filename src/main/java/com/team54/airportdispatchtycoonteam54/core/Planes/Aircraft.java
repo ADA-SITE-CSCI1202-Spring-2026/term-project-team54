@@ -3,23 +3,23 @@ package com.team54.airportdispatchtycoonteam54.core.Planes;
 import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
 
 public abstract class Aircraft {
-    Integer flightNumber;
-    Float turnAroundTime;
-    
-    // Float requiredFuel;
-    // Integer requiredMeals;
-    // Integer requiredLuggage;
 
-    AircraftNeeds needs;
+    //TODO: make it work across sessions
+    private static Integer id = 0;
 
-    Aircraft(Integer flightNumber, AircraftNeeds needs){
+    private Integer flightNumber;
+    private Float turnAroundTime;
+
+    private AircraftNeeds needs;
+
+    public Aircraft(AircraftNeeds needs){
         // this.turnAroundTime = turnAroundTime;
-        this.flightNumber = flightNumber;
+        id++;
+        this.flightNumber = id;
 
+        //TODO: SET THIS RANDOMLY HERE
         this.needs = needs;
     }   
-
-
 
     public Integer getFlightNumber() {
         return flightNumber;
@@ -27,35 +27,13 @@ public abstract class Aircraft {
 
 
     public Integer getSupplyAmountNeeded(SupplyItem item){
-        return needs.requiredSupplies.get(item);
+        return needs.getRequiredSupplyAmount(item);
     }
 
-    
-
-
-
-    // public Integer getRequiredFuel() {
-    //     return needs.requiredFuel;
-    // }
 
     public Float getTurnAroundTime() {
         return turnAroundTime;
     }
-
-    // public Integer getMeals() {
-    //     return needs.requiredMeals;
-    // }
-
-    // public void supplyMeals(Integer meals) {
-    //     needs.requiredMeals += meals;
-    // }
-
-    // public void supplyFuel(Integer fuel) {
-    //     needs.requiredFuel += fuel;
-    // }
-
-
-    
 
     
 }

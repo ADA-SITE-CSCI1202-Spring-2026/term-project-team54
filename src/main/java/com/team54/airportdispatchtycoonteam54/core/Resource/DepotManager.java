@@ -22,20 +22,20 @@ public class DepotManager {
         return supplies.getOrDefault(item, 0) >= amount;
     }
 
-    public Integer useSupply(SupplyItem item, int amount) {
-        Integer usedSupplyAmount;
-        
+    /**
+     * Removes a specified amount of a given supply item from the Depo, but
+     * only if the Depo has enough of that supply item.
+     * @param item The supply item you want to use
+     * @param amount The amount of the supply item you want to use.
+     * @return True if the DepotManager has enough of the given supply; false if not.
+     */
+    public boolean useSupply(SupplyItem item, int amount) {
         if (hasEnough(item, amount)) {
-            usedSupplyAmount = amount;
             supplies.put(item, supplies.get(item) - amount);
-            return usedSupplyAmount;
+            return true;
         }
-        usedSupplyAmount = supplies.get(item);
-        supplies.put(item, 0);
-        return usedSupplyAmount;
-
+        return false;
     }
-
     
     public boolean purchase(SupplyItem item, int amount, double price) {
         double total = amount * price;

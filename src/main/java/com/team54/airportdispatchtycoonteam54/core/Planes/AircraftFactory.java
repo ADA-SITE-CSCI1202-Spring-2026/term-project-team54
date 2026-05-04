@@ -1,14 +1,5 @@
 package com.team54.airportdispatchtycoonteam54.core.Planes;
 
-import com.team54.airportdispatchtycoonteam54.core.Queue.Queue;
-
-// import com.team54.airportdispatchtycoonteam54.core.Queue.Queue;
-
-
-
-
-
-
 /**
  * Factory class for creating different Aircraft types.
 */
@@ -16,17 +7,12 @@ public class AircraftFactory {
     /**
      * Returns an Aircraft class depending on the AIrcraftType.
     */
-    public static Aircraft create(AircraftType type,AircraftNeeds AircraftNeeds){
-        switch (type) {
-            case CARGO:
-                return createCargoFreighter(AircraftNeeds);
-            case COMMERCIAL:
-                return createCommercialJet(AircraftNeeds);
-            case PRIVATE:
-                return createPrivateCharter(AircraftNeeds);
-            default:
-                return createPrivateCharter(AircraftNeeds);        
-        }
+    public static <T extends Aircraft> T create(AircraftType type,AircraftNeeds AircraftNeeds){
+        return switch (type) {
+            case CARGO -> createCargoFreighter(AircraftNeeds);
+            case COMMERCIAL -> createCommercialJet(AircraftNeeds);
+            case PRIVATE -> createPrivateCharter(AircraftNeeds);
+        };
     }
 
     /**
@@ -35,19 +21,19 @@ public class AircraftFactory {
 
 
     private static PrivateCharter createPrivateCharter(AircraftNeeds AircraftNeeds){
-        PrivateCharter privateCharter = new PrivateCharter(Queue.getNextID(), AircraftNeeds);
+        PrivateCharter privateCharter = new PrivateCharter(AircraftNeeds);
         return privateCharter;
     }
 
 
     private static CargoFreighter createCargoFreighter(AircraftNeeds AircraftNeeds){
-        CargoFreighter cargoFreighter = new CargoFreighter(Queue.getNextID(), AircraftNeeds);
+        CargoFreighter cargoFreighter = new CargoFreighter(AircraftNeeds);
         return cargoFreighter;
 
     }
 
     private static CommercialJet createCommercialJet(AircraftNeeds AircraftNeeds){
-        CommercialJet commercialJet = new CommercialJet(Queue.getNextID(), AircraftNeeds);
+        CommercialJet commercialJet = new CommercialJet(AircraftNeeds);
         return commercialJet;
     }
 

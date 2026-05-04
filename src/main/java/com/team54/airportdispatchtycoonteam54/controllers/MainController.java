@@ -1,12 +1,13 @@
 package com.team54.airportdispatchtycoonteam54.controllers;
 
+import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class MainController {
     @FXML
-    private ListView flightList; //TODO: add abstract Aircraft type
+    private ListView<FlightRequest> flightList;
 
     @FXML
     private Label jetFuelLabel;

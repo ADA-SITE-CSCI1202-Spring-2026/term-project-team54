@@ -7,8 +7,8 @@ import com.team54.airportdispatchtycoonteam54.core.Resource.DepotManager;
 import com.team54.airportdispatchtycoonteam54.core.Resource.SupplyItem;
 
 public class CrewManager {
-    ArrayList<IGroundService> groundService;
-    DepotManager depotManager;
+    private final ArrayList<IGroundService> groundService;
+    private final DepotManager depotManager;
 
     public CrewManager(DepotManager depotManager){
         this.depotManager = depotManager;
@@ -21,9 +21,11 @@ public class CrewManager {
 
     public void supplyPlane(Aircraft aircraft, SupplyItem supplyItem){
         Integer neededSupplyAmount = aircraft.getSupplyAmountNeeded(supplyItem);
-        Integer suppliedAMount = depotManager.useSupply(supplyItem,neededSupplyAmount);
+
+        if(!depotManager.useSupply(supplyItem,neededSupplyAmount)) return;
+
         for (IGroundService service : groundService) {
-            if(service.serviceFlight(aircraft, supplyItem,suppliedAMount))break;
+            if(service.serviceFlight(aircraft, supplyItem, neededSupplyAmount)) break;
         }
     }    
 }
