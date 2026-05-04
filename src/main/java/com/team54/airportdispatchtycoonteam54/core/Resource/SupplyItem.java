@@ -6,14 +6,14 @@ public enum SupplyItem {
     LUGGAGE("Luggage Cart", 10);
 
     private final String label;
-    private final double price;
+    private final int price;
 
-    SupplyItem(String label, double price) {
+    SupplyItem(String label, int price) {
         this.label = label;
         this.price = price;
     }
 
-    public Double getPrice(){
+    public Integer getPrice(){
         return price;
     }
 

@@ -7,14 +7,14 @@ import com.team54.airportdispatchtycoonteam54.core.Queue.FlightRequest;
 public class CrewManager {
     private static CrewManager INSTANCE;
 
-    private final ArrayList<IGroundService> groundService =  new ArrayList<>();
+    private final ArrayList<IGroundService> groundServices =  new ArrayList<>();
 
     private String currentMessage;
 
     public CrewManager(){
-        groundService.add(new BaggageHandler());
-        groundService.add(new FuelingTruck());
-        groundService.add(new CateringVan());
+        groundServices.add(new BaggageHandler());
+        groundServices.add(new FuelingTruck());
+        groundServices.add(new CateringVan());
     }
 
     public static CrewManager getInstance(){
@@ -26,24 +26,33 @@ public class CrewManager {
 
 
     /**
-     * @return The message to be shown in the Dispatch Radio after the supply attempt is complete.
+     * @return The message to be shown in the Dispatch Radio after the service attempt is complete.
      */
-    public String supplyFlight(FlightRequest flightRequest){
+    public ServiceResult serviceFlight(FlightRequest flightRequest){
+        if(flightRequest == null){
+            return new ServiceResult(false, "ERROR: No flight request to service.\n");
+        }
         String currentMessage = "";
-        for (IGroundService service : groundService) {
+        boolean canAllServicesSucceed = true;
+        for (IGroundService service : groundServices) {
             Integer neededSupplyAmount =
                     flightRequest.getAircraft().getSupplyAmountNeeded(service.getRequiredSupplyItem());
 
-            if(service.canServiceFlight(neededSupplyAmount)){
-                service.serviceFlight(flightRequest);
-                currentMessage += service + " has successfully serviced the flight request.\n";
-            }else{
-                currentMessage += "Error: not enough " + service.getRequiredSupplyItem()
+            if(!service.canServiceFlight(neededSupplyAmount)) {
+                canAllServicesSucceed = false;
+                currentMessage = "Error: not enough " + service.getRequiredSupplyItem()
                         + " in the depot to service the flight request.\n";
-                return currentMessage;
+                break;
             }
         }
-        return currentMessage;
+        if(canAllServicesSucceed){
+            for(IGroundService service: groundServices){
+                service.serviceFlight(flightRequest);
+                currentMessage += service + " has successfully serviced the flight request.\n";
+            }
+            currentMessage += "The flight request for " + flightRequest + " has been successfully cleared.\n";
+        }
+        return new ServiceResult(canAllServicesSucceed, currentMessage);
     }
 
 }

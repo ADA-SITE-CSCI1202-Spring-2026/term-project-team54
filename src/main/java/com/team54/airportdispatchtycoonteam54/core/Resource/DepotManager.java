@@ -6,14 +6,22 @@ import java.util.HashMap;
 public class DepotManager {
 
     private static DepotManager INSTANCE;
-    private static final double INITIAL_BUDGET = 100;
+
+    private static final int INITIAL_BUDGET = 1000;
+    private static final int INITIAL_FUEL = 10;
+    private static final int INITIAL_MEALS = 10;
+    private static final int INITIAL_LUGGAGE = 10;
 
     private final HashMap<SupplyItem, Integer> supplies;
-    private double budget;
+    private int budget;
 
     private DepotManager() {
         supplies = new HashMap<>();
-        budget = INITIAL_BUDGET; //TODO: read from config
+        supplies.put(SupplyItem.FUEL, INITIAL_FUEL);
+        supplies.put(SupplyItem.MEAL, INITIAL_MEALS);
+        supplies.put(SupplyItem.LUGGAGE, INITIAL_LUGGAGE);
+
+        budget = INITIAL_BUDGET;
     }
 
     public static DepotManager getInstance(){
@@ -21,6 +29,18 @@ public class DepotManager {
             INSTANCE = new DepotManager();
         }
         return INSTANCE;
+    }
+
+    public Integer getBudget(){
+        return budget;
+    }
+
+    public void addBudget(int amount){
+        budget += amount;
+    }
+
+    public Integer getSupplyItemAmount(SupplyItem item){
+        return supplies.getOrDefault(item, 0);
     }
 
     /**
